@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery="span.new-customer" t-operation="after">
+            <span class="button">
+                Select Table
+            </span>
+        </t>
+    </t>
+</templates>

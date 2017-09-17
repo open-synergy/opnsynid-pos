@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+       
+<templates id="template" xml:space="preserve">
+    <t t-extend="PosWidget">
+        <t t-jquery="div.pos-leftpane" t-operation="before">
+                <div class="pos-additional-pane-1">
+                    <div class='window'>
+                        <div class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </t>
+        <t t-jquery="div.rightpane" t-operation="before">
+                <div class="pos-additional-pane-2">
+                    <div class='window'>
+                        <div class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix'>                                                                                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </t>
+    </t>
+</templates>
+
+    

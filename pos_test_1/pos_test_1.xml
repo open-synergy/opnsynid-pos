@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="indexs" inherit_id='point_of_sale.index' name="POS Header">
+            <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/pos_test_1/static/src/css/pos_test_1.css" />
+            </xpath>
+        </template>
+        <template id="assets_backends_js" name="pos_test_1 assests" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+               
+               <script type="text/javascript" src="/pos_test_1/static/src/js/main.js"></script>  
+               <script type="text/javascript" src="/pos_test_1/static/src/js/pos_test_1_widget.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
