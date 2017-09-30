@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template
+            id="assets_backend"
+            name="pos_tax_display assets"
+            inherit_id="web.assets_backend"
+            >
+            <xpath expr="." position="inside">
+                <script
+                    type="text/javascript"
+                    src="/pos_tax_display/static/src/js/pos_tax_display.js"
+                    >
+                </script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
