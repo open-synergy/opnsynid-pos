@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<record id="pos_config_view_form" model="ir.ui.view">
+    <field name="name">POS Config Form</field>
+    <field name="model">pos.config</field>
+    <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//sheet/group[1]" position="after">
+            <group name="grp_pos_product_policy" colspan="4" col="2" string="Product Policy">
+                <field name="limit_product_selection"/>
+                <label for="allowed_product_categ_ids" colspan="2"/>
+                <field name="allowed_product_categ_ids" nolabel="1" colspan="2"/>
+                <label for="allowed_product_ids"  colspan="2"/>
+                <field name="allowed_product_ids" nolabel="1" colspan="2"/>
+                <label for="all_allowed_product_ids"  colspan="2"/>
+                <field name="all_allowed_product_ids" nolabel="1" colspan="2"/>
+            </group>
+        </xpath>
+    </field>
+</record>
+</data>
+</openerp>
