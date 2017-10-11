@@ -12,6 +12,7 @@
         "pos_restaurant",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/pos_table_views.xml",
         "views/pos_floor_views.xml",
         "views/pos_config_views.xml",
