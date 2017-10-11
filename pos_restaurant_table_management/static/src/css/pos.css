@@ -1,0 +1,26 @@
+.pos .clientlist-screen .button.select-table {
+    left: 50%;
+    margin-left: 190px;
+}
+
+.pos .popup .floor-button {
+    height: 39px;
+    display: block;
+    width: 100%;
+    margin: 0px -6px 4px -2px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #555555;
+    font-size: 14px;
+}
+
+.pos .popup .table-button {
+    height: 39px;
+    display: block;
+    width: 100%;
+    margin: 0px -6px 4px -2px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #555555;
+    font-size: 14px;
+}
