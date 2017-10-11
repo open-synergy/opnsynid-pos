@@ -16,5 +16,5 @@
     "data": [
         'views/assets_backend.xml',
         "views/account_journal_view.xml"
-	],
+    ],
 }
