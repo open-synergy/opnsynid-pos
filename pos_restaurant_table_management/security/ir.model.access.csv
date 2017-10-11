@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_floor_config,pos.floor_config,model_pos_floor_config,,1,1,1,1
+access_pos_floor,pos.floor,model_pos_floor,,1,1,1,1
+access_pos_table,pos.table,model_pos_table,,1,1,1,1
