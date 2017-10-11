@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="indexs" inherit_id='point_of_sale.index' name="POS Header">
+            <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/pos_restaurant_table_management/static/src/css/pos.css" />
+            </xpath>
+        </template>
+            
+        <template id="assets_backends_js" name="pos_restaurant_table_management assests" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+               <script type="text/javascript" src="/pos_restaurant_table_management/static/src/js/db.js"></script>  
+               <script type="text/javascript" src="/pos_restaurant_table_management/static/src/js/main.js"></script>  
+               <script type="text/javascript" src="/pos_restaurant_table_management/static/src/js/models.js"></script>
+               <script type="text/javascript" src="/pos_restaurant_table_management/static/src/js/widget.js"></script>               
+            </xpath>
+        </template>
+    </data>
+</openerp>

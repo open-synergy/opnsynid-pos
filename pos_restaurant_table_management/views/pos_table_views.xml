@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="pos_table_view_tree" model="ir.ui.view">
+    <field name="name">Tree Pos Table</field>
+    <field name="model">pos.table</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="floor_id"/>
+            <field name="capacity"/>
+            <field name="state"/>
+        </tree>
+    </field>
+</record>
+
+<record id="pos_table_view_form" model="ir.ui.view">
+    <field name="name">Form Pos Table</field>
+    <field name="model">pos.table</field>
+    <field name="arch" type="xml">
+        <form string="Restaurant Table">_
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <group name="grp_pos_table">
+                <field name="name"/>
+                <field name="floor_id"/>
+                <field name="capacity"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="pos_table_action" model="ir.actions.act_window">
+    <field name="name">Tables</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">pos.table</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="pos_table_menu"
+    name="Tables"
+    parent="point_of_sale.menu_point_config_product"
+    groups="point_of_sale.group_pos_manager"
+    action="pos_table_action"
+    />
+
+</data>
+</openerp>
