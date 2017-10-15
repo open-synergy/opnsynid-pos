@@ -12,3 +12,5 @@
 # sale-workflow https://github.com/OCA/sale-workflow
 #
 # To provide both the URL and a branch, use:
+
+opnsynid-stock-logistics-warehouse https://github.com/open-synergy/opnsynid-stock-logistics-warehouse 8.0
