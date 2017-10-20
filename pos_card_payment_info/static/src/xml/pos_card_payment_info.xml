@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="Paymentline" >
+        <t t-jquery=".paymentline-input" t-operation="append">
+            <t t-if="line.cashregister.journal.type == 'bank' ">
+                <span class="payment-card-info">
+                    <button>
+                        <img src="/pos_card_payment_info/static/src/img/card_info.png" />
+                    </button>
+                </span>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="PaymentCardInfoPopUp">
+         <div class="modal-dialog">
+            <div class="popup popup-bankinfo">
+                <t t-raw="widget.msg_show"/>
+                <div class='bankinfo-detail'>
+                    <span class='label'>Bank name :</span>
+                    <select name='pos_payment_bank_id'>
+                        <option value=''>--Select Bank--</option>
+                        <t t-foreach='widget.banks' t-as='bank'>
+                            <option t-att-value='bank.id'> 
+                                <t t-esc='bank.name'/>
+                            </option>
+                        </t>
+                    </select>
+                    <br/>
+                    <span class='label'>Card Number :</span>
+                    <input class='paymentcard-input-ref'
+                            name='paymentcard-input'
+                            placeholder='--Card Number--'/>
+                </div>
+                <div class="footer">
+                    <div class="button ok" style="color: black;">
+                        OK
+                    </div>
+                    <div class="button cancel" style="color: black;">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+         </div>
+    </t>
+
+</templates>

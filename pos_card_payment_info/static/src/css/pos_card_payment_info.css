@@ -1,0 +1,70 @@
+.pos .payment-card-info button {
+    width: 60px;
+    height: 55px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align:center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    left: 105%;
+    bottom: 10px;
+    position: absolute;
+}
+
+.pos .modal-dialog .popup-bankinfo{
+    text-align: center;
+    height: 300px;
+    width: 500px;
+    background-color: #ffffff;
+    border-radius:2px;
+}
+
+.bankinfo-detail{
+    padding: 10px 10px 0 10px;
+}
+
+.bankinfo-detail > .label{
+    width: 150px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+
+.bankinfo-detail select{
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    background: white;
+    min-height: 20px;
+    font-family: "Lato";
+    font-size: 20px;
+    color: #444;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0px 0px 0px 1px rgb(220,220,220) inset;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+.bankinfo-detail input{
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    background: white;
+    min-height: 20px;
+    font-family: "Lato";
+    font-size: 20px;
+    color: #444;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0px 0px 0px 1px rgb(220,220,220) inset;
+    box-sizing: border-box;
+    width: 225px;
+}
+
+.bankinfo-detail select:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px #6EC89B;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>  
+        <template id="indexs" inherit_id='point_of_sale.index' name="POS Header">
+            <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/pos_card_payment_info/static/src/css/pos_card_payment_info.css" />
+            </xpath>
+        </template>
+
+        <template id="assets_backends_js" name="pos_card_payment_info assests" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/main.js"></script>  
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/widget.js"></script>
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/models.js"></script>
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/screen.js"></script>
+              <!--
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/db.js"></script>  
+              <script type="text/javascript" src="/pos_card_payment_info/static/src/js/models.js"></script>
+              -->
+            </xpath>
+        </template>
+    </data>
+</openerp>
