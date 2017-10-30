@@ -5,51 +5,49 @@
 <openerp>
 <data>
 
-<record id="pos_payment_bank_view_tree" model="ir.ui.view">
-    <field name="name">Tree PoS Payment Bank</field>
-    <field name="model">pos.payment_bank</field>
+<record id="res_card_issuer_view_tree" model="ir.ui.view">
+    <field name="name">Tree PoS Card Issuer</field>
+    <field name="model">res.card_issuer</field>
     <field name="arch" type="xml">
         <tree>
             <field name="name"/>
-            <field name="card_issuer_id" />
         </tree>
     </field>
 </record>
 
-<record id="pos_payment_bank_view_form" model="ir.ui.view">
-    <field name="name">Form PoS Payment Bank</field>
-    <field name="model">pos.payment_bank</field>
+<record id="res_card_issuer_view_form" model="ir.ui.view">
+    <field name="name">Form PoS Card Issuer</field>
+    <field name="model">res.card_issuer</field>
     <field name="arch" type="xml">
-        <form string="Payment Bank">
+        <form string="Card Issuer">
             <sheet>
                 <group col="4">
                     <field name="name" />
-                    <field name="card_issuer_id" />
                 </group>
             </sheet>
         </form>
     </field>
 </record>
 
-<record id="pos_payment_bank_action" model="ir.actions.act_window">
-    <field name="name">Payment Bank</field>
+<record id="res_card_issuer_action" model="ir.actions.act_window">
+    <field name="name">Card Issuer</field>
     <field name="type">ir.actions.act_window</field>
-    <field name="res_model">pos.payment_bank</field>
+    <field name="res_model">res.card_issuer</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
     <field name="help" type="html">
       <p class="oe_view_nocontent_create">
-        Click to add a Payment Bank.
+        Click to add a Card Issuer.
       </p>
     </field>
 </record>
 
 <menuitem
-    id="pos_payment_bank_menu"
-    name="Payment Bank"
+    id="res_card_issuer_menu"
+    name="Card Issuer"
     parent="point_of_sale.menu_point_config_product"
     groups="point_of_sale.group_pos_manager"
-    action="pos_payment_bank_action"
+    action="res_card_issuer_action"
     />
 
 </data>
