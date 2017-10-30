@@ -14,6 +14,6 @@ class AccountBankStatementLine(models.Model):
     )
 
     pos_payment_bank_id = fields.Many2one(
-    	string="Payment Bank",
-    	comodel_name="pos.payment_bank"
-	)
+        string="Payment Bank",
+        comodel_name="pos.payment_bank"
+    )
