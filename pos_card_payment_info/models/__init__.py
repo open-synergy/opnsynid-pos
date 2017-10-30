@@ -6,3 +6,4 @@ from . import pos_payment_bank
 from . import account_journal
 from . import account_bank_statement_line
 from . import pos_order
+from . import res_card_issuer

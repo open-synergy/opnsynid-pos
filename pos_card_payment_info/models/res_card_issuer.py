@@ -5,16 +5,11 @@
 from openerp import models, fields
 
 
-class PosPaymentBank(models.Model):
-    _name = "pos.payment_bank"
-    _description = "PoS Payment Bank"
+class ResCardIssuer(models.Model):
+    _name = "res.card_issuer"
+    _description = "Card Issuer"
 
     name = fields.Char(
-        string="Bank",
-        required=True,
-        )
-    card_issuer_id = fields.Many2one(
         string="Issuer",
-        comodel_name="res.card_issuer",
         required=True,
         )
