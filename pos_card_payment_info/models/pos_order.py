@@ -2,12 +2,7 @@
 # Copyright 2017 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm
-import logging
-
-
-_logger = logging.getLogger(__name__)
+from openerp import models
 
 
 class PosOrder(models.Model):
@@ -38,14 +33,20 @@ class PosOrder(models.Model):
             ('journal_id', '=', data['journal']),
             ('amount', '=', data['amount'])
         ]
-        statement_line_ids = obj_bank_stmt_line.search(cr, uid, criteria)
-        statement_line_id = obj_bank_stmt_line.browse(cr, uid, statement_line_ids)
+        pos_card_payment = data['pos_card_payment_info']
+        pos_payment_bank = data['pos_payment_bank_id']
+        statement_line_ids =\
+            obj_bank_stmt_line.search(cr, uid, criteria)
+        statement_line_id =\
+            obj_bank_stmt_line.browse(cr, uid, statement_line_ids)
         for line in statement_line_id:
-            if 'pos_card_payment_info' in data and 'pos_payment_bank_id' in data:
-                if not line.pos_card_payment_info and not line.pos_payment_bank_id:
+            if 'pos_card_payment_info' in data and\
+                    'pos_payment_bank_id' in data:
+                if not line.pos_card_payment_info and not\
+                        line.pos_payment_bank_id:
                     check_vals = {
-                        'pos_card_payment_info': data['pos_card_payment_info'],
-                        'pos_payment_bank_id': data['pos_payment_bank_id']
+                        'pos_card_payment_info': pos_card_payment,
+                        'pos_payment_bank_id': pos_payment_bank
                     }
                     obj_bank_stmt_line.write(
                         cr, uid, [line.id], check_vals, context=context)
