@@ -6,13 +6,14 @@ function pos_restaurant_table_management_models(instance, module){
     // Menambahkan object baru pos.floor ke model POS
     module.PosModel.prototype.models.push({
         model: "pos.floor", // Nama model baru yang dibuat
-        fields: ["name"], // Fields yang akan dipanggil
+        fields: ["name", "floor_name"], // Fields yang akan dipanggil
         domain: function(self){ return [["id", "in", self.config.floor_ids]]}, // Domain
         loaded: function(self, floors){ // Fungsi ketika di model ini diload oleh JS
             // Jika FloorPlan == True
             if(self.config.iface_floorplan){
                 self.floors = floors; // Mendefinisikan variabel floors
                 // Menampung data floors yang diload pada floor_list
+                console.log(floors)
                 self.set({
                     'floor_list' : floors
                 })
@@ -27,7 +28,7 @@ function pos_restaurant_table_management_models(instance, module){
     // Menambahkan object baru pos.table ke model POS
     module.PosModel.prototype.models.push({
         model: "pos.table",
-        fields: ["name", "capacity", "state", "floor_id"],
+        fields: ["name", "table_name", "capacity", "state", "floor_id"],
         domain: function(self){ return [["floor_id", "in", self.config.floor_ids]]},
         loaded: function(self, tables){
             // Jika FloorPlan == True
@@ -58,7 +59,7 @@ function pos_restaurant_table_management_models(instance, module){
         // Lihat T-7
         get_table_name: function(){
             var table = this.get('table');
-            return table ? table.name : "";
+            return table ? table.table_name : "";
         },
         // M-3.4
         // Inherit Fungsi export_as_JSON

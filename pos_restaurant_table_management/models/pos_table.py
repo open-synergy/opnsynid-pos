@@ -7,9 +7,13 @@ from openerp import models, fields
 
 class PosTable(models.Model):
     _name = "pos.table"
-    _description = "PoS Table"
+    _description = "Restaurant Table"
 
     name = fields.Char(
+        string="Name",
+        required=True,
+        )
+    table_name = fields.Char(
         string="Table Name",
         required=True,
         )

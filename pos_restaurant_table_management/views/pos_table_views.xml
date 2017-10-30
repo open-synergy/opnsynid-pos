@@ -11,6 +11,7 @@
     <field name="arch" type="xml">
         <tree>
             <field name="name"/>
+            <field name="table_name"/>
             <field name="floor_id"/>
             <field name="capacity"/>
             <field name="state"/>
@@ -28,6 +29,7 @@
             </header>
             <group name="grp_pos_table">
                 <field name="name"/>
+                <field name="table_name"/>
                 <field name="floor_id"/>
                 <field name="capacity"/>
             </group>
