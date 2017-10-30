@@ -10,14 +10,20 @@ class PosFloor(models.Model):
     _description = "Restaurant Floor"
 
     name = fields.Char(
-        string="Floor",
+        string="Name",
         required=True,
         )
-    pos_config_id = fields.Many2one(
-        string="PoS",
+    floor_name = fields.Char(
+        string="Floor Name",
+        required=True,
+        )
+    config_ids = fields.Many2many(
+        string="PoS Configs",
         comodel_name="pos.config",
-        required=True,
-        )
+        relation="pos_config_floor_rel",
+        column1="floor_id",
+        column2="config_id"
+    )
     table_ids = fields.One2many(
         string="Tables",
         comodel_name="pos.table",

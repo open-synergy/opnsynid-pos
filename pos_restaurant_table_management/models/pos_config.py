@@ -8,11 +8,13 @@ from openerp import models, fields
 class PosConfig(models.Model):
     _inherit = "pos.config"
 
-    floor_ids = fields.One2many(
-        string="Floor",
+    floor_ids = fields.Many2many(
+        string="Floors",
         comodel_name="pos.floor",
-        inverse_name="pos_config_id",
-        )
+        relation="pos_config_floor_rel",
+        column1="config_id",
+        column2="floor_id"
+    )
     iface_floorplan = fields.Boolean(
         string='Floor Plan',
         help='Enable Floor and Tables in the Point of Sale'

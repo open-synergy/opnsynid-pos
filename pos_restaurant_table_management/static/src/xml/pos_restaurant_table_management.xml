@@ -54,7 +54,7 @@
     <t t-name="FloorListWidget">
         <span class='floor_list_widget' t-att-data-floor-id="widget.model_floor.id">
             <button class="floor-button">
-                <t t-esc="widget.model_floor.name"/>
+                <t t-esc="widget.model_floor.floor_name"/>
             </button>
         </span>
     </t>  
@@ -92,7 +92,7 @@
     <t t-name="TableListWidget">
         <span class='table_list_widget' t-att-data-floor-id="widget.model_table.id">
             <button class="table-button">
-                <t t-esc="widget.model_table.name"/>
+                <t t-esc="widget.model_table.table_name"/>
             </button>
         </span>
     </t>
