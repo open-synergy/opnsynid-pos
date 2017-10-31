@@ -33,8 +33,6 @@ class PosOrder(models.Model):
             ('journal_id', '=', data['journal']),
             ('amount', '=', data['amount'])
         ]
-        pos_card_payment = data['pos_card_payment_info']
-        pos_payment_bank = data['pos_payment_bank_id']
         statement_line_ids =\
             obj_bank_stmt_line.search(cr, uid, criteria)
         statement_line_id =\
@@ -42,6 +40,8 @@ class PosOrder(models.Model):
         for line in statement_line_id:
             if 'pos_card_payment_info' in data and\
                     'pos_payment_bank_id' in data:
+                pos_card_payment = data['pos_card_payment_info']
+                pos_payment_bank = data['pos_payment_bank_id']
                 if not line.pos_card_payment_info and not\
                         line.pos_payment_bank_id:
                     check_vals = {
