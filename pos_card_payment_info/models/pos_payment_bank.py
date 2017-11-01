@@ -10,7 +10,7 @@ class PosPaymentBank(models.Model):
     _description = "PoS Payment Bank"
 
     name = fields.Char(
-        string="Bank",
+        string="Name",
         required=True,
         )
     card_issuer_id = fields.Many2one(
