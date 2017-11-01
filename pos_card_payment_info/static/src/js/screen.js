@@ -20,7 +20,7 @@ function pos_card_payment_info_screen(instance, module){
             var msg_show = "";
             msg_show += "<script>$('.paymentcard-input-ref').focus();" +
                     " </script>" +
-                    "<p id='title' style='color: black;'>Payment Card Info</p><hr></hr>";
+                    "<p id='title' style='color: black;'>Electronic Payment Information</p><hr></hr>";
             self.pos_widget.screen_selector.show_popup("payment-card-info",{msg_show : msg_show});
         },
 

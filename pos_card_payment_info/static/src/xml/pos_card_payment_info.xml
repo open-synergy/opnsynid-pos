@@ -18,9 +18,9 @@
             <div class="popup popup-bankinfo">
                 <t t-raw="widget.msg_show"/>
                 <div class='bankinfo-detail'>
-                    <span class='label'>Bank name :</span>
+                    <span class='label'>Payment :</span>
                     <select name='pos_payment_bank_id'>
-                        <option value=''>--Select Bank--</option>
+                        <option value=''>--Select Payment--</option>
                         <t t-foreach='widget.banks' t-as='bank'>
                             <option t-att-value='bank.id'> 
                                 <t t-esc='bank.name'/>
@@ -28,10 +28,10 @@
                         </t>
                     </select>
                     <br/>
-                    <span class='label'>Card Number :</span>
+                    <span class='label'>Reference :</span>
                     <input class='paymentcard-input-ref'
                             name='paymentcard-input'
-                            placeholder='--Card Number--'/>
+                            placeholder='--Input Reference--'/>
                 </div>
                 <div class="footer">
                     <div class="button ok" style="color: black;">

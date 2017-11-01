@@ -6,7 +6,7 @@
 <data>
 
 <record id="res_card_issuer_view_tree" model="ir.ui.view">
-    <field name="name">Tree PoS Card Issuer</field>
+    <field name="name">Tree PoS Issuer</field>
     <field name="model">res.card_issuer</field>
     <field name="arch" type="xml">
         <tree>
@@ -16,7 +16,7 @@
 </record>
 
 <record id="res_card_issuer_view_form" model="ir.ui.view">
-    <field name="name">Form PoS Card Issuer</field>
+    <field name="name">Form PoS Issuer</field>
     <field name="model">res.card_issuer</field>
     <field name="arch" type="xml">
         <form string="Card Issuer">
@@ -30,7 +30,7 @@
 </record>
 
 <record id="res_card_issuer_action" model="ir.actions.act_window">
-    <field name="name">Card Issuer</field>
+    <field name="name">Issuer</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">res.card_issuer</field>
     <field name="view_type">form</field>
@@ -44,7 +44,7 @@
 
 <menuitem
     id="res_card_issuer_menu"
-    name="Card Issuer"
+    name="Issuer"
     parent="point_of_sale.menu_point_config_product"
     groups="point_of_sale.group_pos_manager"
     action="res_card_issuer_action"
