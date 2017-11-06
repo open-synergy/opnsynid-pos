@@ -162,6 +162,7 @@ function pos_restaurant_table_management_widget(instance, module){
                 // Fungsi get_table_by_floor ada pada /src/js/db.js
                 // Lihat DB-1.3
                 self.pos_widget.table_popup.set_table_list(self.pos.db.get_table_by_floor(self.model_floor.id));
+                console.log(self.model_floor)
                 // Menampilkan widget Pop Up yang sudah didefinisikan di awal pada S.1-3
                 self.pos_widget.screen_selector.show_popup("tables");
                 $('#table-back').click(function(){
@@ -204,18 +205,15 @@ function pos_restaurant_table_management_widget(instance, module){
             // this.table_list sudah diset pada S-6.1
             var tables = this.table_list || []; 
             // Proses Memasukan data pada template
-            // Melakukan looping terhadap data table yang ada
-            for(var i = 0; i < tables.length;  i++ ){
-                // Mendefinisikan Widget Table List
-                // Melakukan parsing parameter model_table
-                // Nantinya variable ini akan dipakai sebagai element untuk menampilkan data di Template
-                var table = new module.TableListWidget(this, {
-                    model_table: tables[i],
-                });
-                // Template yang sudah didefiniskan di atas di append ke DOM '.table_data'
-                // '.table_data' ada pada T-5
-                table.appendTo(this.$('.table-data'));
-            }
+            // Mendefinisikan Widget Table List
+            // Melakukan parsing parameter model_table
+            // Nantinya variable ini akan dipakai sebagai element untuk menampilkan data di Template
+            var table = new module.TableListWidget(this, {
+                model_table: tables,
+            });
+            // Template yang sudah didefiniskan di atas di append ke DOM '.table_data'
+            // '.table_data' ada pada T-5
+            table.appendTo(this.$('.table-data'));
         },
     }); 
 
@@ -240,13 +238,20 @@ function pos_restaurant_table_management_widget(instance, module){
             var self = this;
 
             // Membuat fungsi pada saat data tabel di-klik
-            $("button", this.$el).click(function(e){
+            $("option", this.$el).click(function(e){
                 // S-7.1
                 // Memasukan data tabel
                 // Data dimasukan ke dalam Fungsi "set_table"
                 // Fungsi tersebut ada pada Module Order pada /src/js/model.js
                 // Lihat M-3.1
-                self.pos.get('selectedOrder').set_table(self.model_table);
+                var table_id = parseInt($('select[name=select_table]').val())
+                console.log(table_id);
+                for (var i=0, len = self.model_table.length; i < len; i++){
+                    if (self.model_table[i].id == table_id){
+                        self.pos.get('selectedOrder').set_table(self.model_table[i]);
+                        break;
+                    }
+                }
                 // Fungsi ini untuk mengembalikan screen ke awal
                 self.pos_widget.screen_selector.back();
             });

@@ -74,10 +74,6 @@
                     <i class='fa fa-angle-double-left'></i>
                     Back
                 </span>
-                <span class='button next oe_hidden highlight'>
-                    Set Customer
-                    <i class='fa fa-angle-double-right'></i>
-                </span>
                 <div class="table-data" >
                 </div> 
             </div>
@@ -91,9 +87,14 @@
     -->
     <t t-name="TableListWidget">
         <span class='table_list_widget' t-att-data-floor-id="widget.model_table.id">
-            <button class="table-button">
-                <t t-esc="widget.model_table.table_name"/>
-            </button>
+            <select class='selected_table' name='select_table'>
+                <option value=''>--Select Table--</option>
+                <t t-foreach='widget.model_table' t-as='table'>
+                    <option t-att-value='table.id'> 
+                        <t t-esc='table.table_name'/>
+                    </option>
+                </t>
+            </select>
         </span>
     </t>
 

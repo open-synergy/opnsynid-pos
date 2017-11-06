@@ -13,7 +13,6 @@ function pos_restaurant_table_management_models(instance, module){
             if(self.config.iface_floorplan){
                 self.floors = floors; // Mendefinisikan variabel floors
                 // Menampung data floors yang diload pada floor_list
-                console.log(floors)
                 self.set({
                     'floor_list' : floors
                 })
