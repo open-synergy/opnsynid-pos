@@ -35,3 +35,53 @@
     color: #555555;
     font-size: 14px;
 }
+
+.table-list{
+    padding: 10px 10px 0 10px;
+}
+
+.table-list > .label{
+    width: 150px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+
+.table-list select{
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    background: white;
+    min-height: 20px;
+    font-family: "Lato";
+    font-size: 20px;
+    color: #444;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0px 0px 0px 1px rgb(220,220,220) inset;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+.table-list input{
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    background: white;
+    min-height: 20px;
+    font-family: "Lato";
+    font-size: 20px;
+    color: #444;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0px 0px 0px 1px rgb(220,220,220) inset;
+    box-sizing: border-box;
+    width: 225px;
+}
+
+.table-list select:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px #6EC89B;
+}

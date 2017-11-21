@@ -61,12 +61,22 @@ function pos_restaurant_table_management_models(instance, module){
             return table ? table.table_name : "";
         },
         // M-3.4
+        // Membuat Fungsi untuk menampung data Guest
+        set_guest: function(guest){
+            this.set('guest',guest);
+        },
+        // Membuat Fungsi untuk mengambil data Guest
+        get_guest: function(){
+            return this.get('guest');
+        },
+        // M-3.5
         // Inherit Fungsi export_as_JSON
         // Fungsi ini digunakan untuk mengeksport data yang akan dimasukan ke object pos.order
         export_as_JSON: function(){
             var json = _super.prototype.export_as_JSON.apply(this,arguments);   
             // Menambahkan variabel tabel        
             json.table = this.get_table();
+            json.guest = this.get_guest();
             return json;
         },
     })

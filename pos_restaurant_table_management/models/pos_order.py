@@ -12,6 +12,9 @@ class PosOrder(models.Model):
         string="Table",
         comodel_name="pos.table",
         )
+    guest = fields.Integer(
+        string="Guest"
+    )
 
     def _order_fields(self, cr, uid, ui_order, context=None):
         res = super(PosOrder, self)._order_fields(
@@ -19,4 +22,6 @@ class PosOrder(models.Model):
         )
         if "table" in ui_order:
             res['table_id'] = ui_order['table']['id']
+        if "guest" in ui_order:
+            res['guest'] = ui_order['guest']
         return res

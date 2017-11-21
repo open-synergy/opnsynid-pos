@@ -42,7 +42,7 @@ function pos_card_payment_info_widget(instance, module){
             this.banks = list_payment_banks;
             this._super();
             this.renderElement();
-            this.$('.button.ok').click(function() {
+            this.$('#button.ok').click(function() {
                 var payment_ref = $('.paymentcard-input-ref').val();
                 var payment_bank = parseInt($('select[name=pos_payment_bank_id]').val())
                 paymentLine.set_payment_ref(payment_ref)

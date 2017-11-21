@@ -70,10 +70,6 @@
                 <div class="floor-heading">
                     Tables List
                 </div>
-                <span class='button' id='table-back'>
-                    <i class='fa fa-angle-double-left'></i>
-                    Back
-                </span>
                 <div class="table-data" >
                 </div> 
             </div>
@@ -86,7 +82,16 @@
         Membuat Template List Widget Untuk Table
     -->
     <t t-name="TableListWidget">
-        <span class='table_list_widget' t-att-data-floor-id="widget.model_table.id">
+        <div class='table-list'>
+            <span class='button' id='table-ok'>
+                <i style="color: black;">
+                OK
+                </i>
+            </span>
+            <span class='button' id='table-back'>
+                <i class='fa fa-angle-double-left'></i>
+                Back
+            </span>
             <select class='selected_table' name='select_table'>
                 <option value=''>--Select Table--</option>
                 <t t-foreach='widget.model_table' t-as='table'>
@@ -94,8 +99,11 @@
                         <t t-esc='table.table_name'/>
                     </option>
                 </t>
+                <input class='table-guest'
+                        name='tableguest-input'
+                        placeholder='--Number of Guest--'/>
             </select>
-        </span>
+        </div>  
     </t>
 
     <!--    

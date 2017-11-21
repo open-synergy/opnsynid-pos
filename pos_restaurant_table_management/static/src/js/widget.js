@@ -165,11 +165,6 @@ function pos_restaurant_table_management_widget(instance, module){
                 console.log(self.model_floor)
                 // Menampilkan widget Pop Up yang sudah didefinisikan di awal pada S.1-3
                 self.pos_widget.screen_selector.show_popup("tables");
-                $('#table-back').click(function(){
-                    // Menampilkan widget Pop Up Floors
-                    // Pop up ini sudah didaftarkan pada S-1.2
-                    self.pos_widget.screen_selector.show_popup("floors");
-                });
             });
         }
     });
@@ -238,14 +233,19 @@ function pos_restaurant_table_management_widget(instance, module){
             var self = this;
 
             // Membuat fungsi pada saat data tabel di-klik
-            $("option", this.$el).click(function(e){
+            $("#table-ok", this.$el).click(function(e){
                 // S-7.1
                 // Memasukan data tabel
                 // Data dimasukan ke dalam Fungsi "set_table"
                 // Fungsi tersebut ada pada Module Order pada /src/js/model.js
                 // Lihat M-3.1
+                var guest = $('.table-guest').val();
                 var table_id = parseInt($('select[name=select_table]').val())
-                console.log(table_id);
+
+                if (parseInt(guest) > 0){
+                    self.pos.get('selectedOrder').set_guest(guest);
+                }
+
                 for (var i=0, len = self.model_table.length; i < len; i++){
                     if (self.model_table[i].id == table_id){
                         self.pos.get('selectedOrder').set_table(self.model_table[i]);
@@ -254,6 +254,11 @@ function pos_restaurant_table_management_widget(instance, module){
                 }
                 // Fungsi ini untuk mengembalikan screen ke awal
                 self.pos_widget.screen_selector.back();
+            });
+            $("#table-back", this.$el).click(function(e){
+                // Menampilkan widget Pop Up Floors
+                // Pop up ini sudah didaftarkan pada S-1.2
+                self.pos_widget.screen_selector.show_popup("floors");
             });
         },
 
