@@ -45,7 +45,7 @@
 <menuitem
     id="res_card_issuer_menu"
     name="Issuer"
-    parent="point_of_sale.menu_point_config_product"
+    parent="pos_electronic_payment_menu"
     groups="point_of_sale.group_pos_manager"
     action="res_card_issuer_action"
     />

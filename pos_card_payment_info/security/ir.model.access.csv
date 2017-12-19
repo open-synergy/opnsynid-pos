@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_pos_payment_bank,pos.payment_bank,model_pos_payment_bank,,1,1,1,1
 access_res_card_issuer,res.card_issuer,model_res_card_issuer,,1,1,1,1
+access_pos_payment_type,pos.payment.type,model_pos_payment_type,,1,1,1,1

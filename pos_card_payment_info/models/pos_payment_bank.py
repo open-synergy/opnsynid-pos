@@ -13,8 +13,17 @@ class PosPaymentBank(models.Model):
         string="Name",
         required=True,
         )
+    payment_type_id = fields.Many2one(
+        string="Payment Type",
+        comodel_name="pos.payment.type",
+        required=False,
+        )
     card_issuer_id = fields.Many2one(
         string="Issuer",
         comodel_name="res.card_issuer",
         required=True,
         )
+    active = fields.Boolean(
+        string="Active",
+        default=True
+    )

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="pos_payment_type_debit" model="pos.payment.type">
+            <field name="name">Debit</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="pos_payment_type_credit" model="pos.payment.type">
+            <field name="name">Credit</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</openerp>

@@ -23,11 +23,23 @@ function pos_card_payment_info_models(instance, module){
         get_payment_bank: function(){
             return this.get('payment_bank');
         },
+        set_payment_name: function(payment_name){
+            this.set('payment_name',payment_name);
+        },
+        get_payment_name: function(){
+            return this.get('payment_name');
+        },
         export_as_JSON: function() {
             var json = _super.prototype.export_as_JSON.apply(this,arguments);
             json.payment_ref = this.get_payment_ref();
             json.payment_bank = this.get_payment_bank();
             return json;
+        },
+        export_for_printing: function(attributes){
+            var line = _super.prototype.export_for_printing.apply(this, arguments);
+            line['payment_bank'] = this.get_payment_bank();
+            line['payment_name'] = this.get_payment_name();
+            return line;
         },
     });
 };

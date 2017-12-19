@@ -3,54 +3,64 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <openerp>
-<data>
+    <data>
 
-<record id="pos_payment_bank_view_tree" model="ir.ui.view">
-    <field name="name">Tree PoS Electronic Payment</field>
-    <field name="model">pos.payment_bank</field>
-    <field name="arch" type="xml">
-        <tree>
-            <field name="name"/>
-            <field name="card_issuer_id" />
-        </tree>
-    </field>
-</record>
-
-<record id="pos_payment_bank_view_form" model="ir.ui.view">
-    <field name="name">Form PoS Electronic Payment</field>
-    <field name="model">pos.payment_bank</field>
-    <field name="arch" type="xml">
-        <form string="Payment Bank">
-            <sheet>
-                <group col="4">
-                    <field name="name" />
+        <record id="pos_payment_bank_view_tree" model="ir.ui.view">
+            <field name="name">Tree PoS Electronic Payment</field>
+            <field name="model">pos.payment_bank</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="payment_type_id" />
                     <field name="card_issuer_id" />
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+                </tree>
+            </field>
+        </record>
 
-<record id="pos_payment_bank_action" model="ir.actions.act_window">
-    <field name="name">Electronic Payment</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">pos.payment_bank</field>
-    <field name="view_type">form</field>
-    <field name="view_mode">tree,form</field>
-    <field name="help" type="html">
-      <p class="oe_view_nocontent_create">
-        Click to add a Electronic Payment.
-      </p>
-    </field>
-</record>
+        <record id="pos_payment_bank_view_form" model="ir.ui.view">
+            <field name="name">Form PoS Electronic Payment</field>
+            <field name="model">pos.payment_bank</field>
+            <field name="arch" type="xml">
+                <form string="Payment Bank">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="payment_type_id" />
+                            <field name="card_issuer_id" />
+                            <field name="active" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-<menuitem
-    id="pos_payment_bank_menu"
-    name="Electronic Payment"
-    parent="point_of_sale.menu_point_config_product"
-    groups="point_of_sale.group_pos_manager"
-    action="pos_payment_bank_action"
-    />
+        <record id="pos_payment_bank_action" model="ir.actions.act_window">
+            <field name="name">Electronic Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.payment_bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a Electronic Payment.
+              </p>
+            </field>
+        </record>
 
-</data>
+        <menuitem
+            id="pos_electronic_payment_menu"
+            name="Electronic Payment"
+            parent="point_of_sale.menu_point_config_product"
+            groups="point_of_sale.group_pos_manager"
+            />
+
+        <menuitem
+            id="pos_payment_bank_menu"
+            name="Electronic Payment"
+            parent="pos_electronic_payment_menu"
+            groups="point_of_sale.group_pos_manager"
+            action="pos_payment_bank_action"
+            />
+
+    </data>
 </openerp>

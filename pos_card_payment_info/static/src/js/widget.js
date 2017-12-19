@@ -42,11 +42,16 @@ function pos_card_payment_info_widget(instance, module){
             this.banks = list_payment_banks;
             this._super();
             this.renderElement();
-            this.$('#button.ok').click(function() {
+            this.$('.button.ok').click(function() {
                 var payment_ref = $('.paymentcard-input-ref').val();
-                var payment_bank = parseInt($('select[name=pos_payment_bank_id]').val())
+                var $select = $("select[name='pos_payment_bank_id']");
+                var payment_bank = parseInt($select.val())
+                var nb = $select
+                    .find("option[value="+(payment_bank || 0)+"]")
+                    .show().text();
                 paymentLine.set_payment_ref(payment_ref)
                 paymentLine.set_payment_bank(payment_bank)
+                paymentLine.set_payment_name(nb)
                 self.pos_widget.screen_selector.set_current_screen(self.back_screen);
             });
 
