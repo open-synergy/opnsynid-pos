@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+            
+<template id="assets_backends_js" name="pos_disable_product_grouping assests" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+        <script type="text/javascript" src="/pos_disable_product_grouping/static/src/js/main.js"></script>  
+        <script type="text/javascript" src="/pos_disable_product_grouping/static/src/js/models.js"></script>
+        <script type="text/javascript" src="/pos_disable_product_grouping/static/src/js/widget.js"></script>
+    </xpath>
+</template>
+</data>
+</openerp>
