@@ -22,6 +22,10 @@ class PosOrderSummary(models.AbstractModel):
         string="Warehouse",
         comodel_name="stock.warehouse"
     )
+    price_unit = fields.Float(
+        string="Unit Price",
+        digits_compute=dp.get_precision('Product Price')
+    )
     total_discount = fields.Float(
         string="Total Discount",
         digits_compute=dp.get_precision('Account')
@@ -45,6 +49,7 @@ class PosOrderSummary(models.AbstractModel):
                 )::date AS date_order,
                 A.product_id AS product_id,
                 E.warehouse_id,
+                A.price_unit AS price_unit,
                 SUM((A.price_unit *(A.discount/100))) AS total_discount,
                 SUM(A.qty) AS total_qty,
                 SUM(A.price_subtotal) AS total_price
@@ -70,7 +75,7 @@ class PosOrderSummary(models.AbstractModel):
         group_by_str = """
             GROUP BY (
                 B.date_order at time zone 'utc'at time zone 'Asia/Jakarta'
-            )::date,A.product_id,E.warehouse_id
+            )::date,A.product_id,E.warehouse_id,A.price_unit
         """
         return group_by_str
 

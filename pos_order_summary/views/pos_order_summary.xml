@@ -12,6 +12,7 @@
                     <field name="date_order"/>
                     <field name="warehouse_id"/>
                     <field name="product_id"/>
+                    <field name="price_unit"/>
                     <field name="total_discount"/>                        
                     <field name="total_qty"/>            
                     <field name="total_price"/>
