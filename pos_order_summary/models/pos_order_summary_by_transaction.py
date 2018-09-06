@@ -14,8 +14,8 @@ class PosOrderSummaryByTransaction(models.AbstractModel):
     date_order = fields.Date(
         string="Order Date"
     )
-    name = fields.Char(
-        string="Order Ref."
+    pos_reference = fields.Char(
+        string="Receipt Ref."
     )
     product_id = fields.Many2one(
         string="Product",
@@ -50,7 +50,7 @@ class PosOrderSummaryByTransaction(models.AbstractModel):
                     B.date_order at time zone 'utc'
                     at time zone 'Asia/Jakarta'
                 )::date AS date_order,
-                B.name AS name,
+                B.pos_reference AS pos_reference,
                 A.product_id AS product_id,
                 E.warehouse_id AS warehouse_id,
                 A.price_unit AS price_unit,

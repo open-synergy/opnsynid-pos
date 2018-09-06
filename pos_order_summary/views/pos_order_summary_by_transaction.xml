@@ -11,7 +11,7 @@
                 <tree create="false" edit="false" delete="false">
                     <field name="date_order"/>
                     <field name="warehouse_id"/>
-                    <field name="name"/>
+                    <field name="pos_reference"/>
                     <field name="product_id"/>
                     <field name="price_unit"/>
                     <field name="discount"/>                        
@@ -29,11 +29,11 @@
                     <field name="date_order"/>
                     <field name="warehouse_id"/>
                     <field name="product_id"/>
-                    <field name="name"/>
+                    <field name="pos_reference"/>
                     <group string="Group By">
                         <filter name="grp_date_order" string="Date Order" context="{'group_by':'date_order:day'}"/>
                         <filter name="grp_warehouse_id" string="Warehouse" context="{'group_by':'warehouse_id'}"/>
-                        <filter name="grp_name" string="Order Ref." context="{'group_by':'name'}"/>
+                        <filter name="grp_pos_reference" string="Receipt Ref." context="{'group_by':'pos_reference'}"/>
                         <filter name="grp_product_id" string="Product" context="{'group_by':'product_id'}"/>
                         <filter name="grp_current_date" string="Current Date" domain="[('date_order', '=', datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
                     </group>
@@ -52,7 +52,7 @@
             <field name="target">current</field>
             <field name="context">
                 {
-                    'search_default_grp_name':1,
+                    'search_default_grp_pos_reference':1,
                     'search_default_grp_date_order':1,
                     'search_default_grp_warehouse_id':1,
                     'search_default_grp_current_date':1
