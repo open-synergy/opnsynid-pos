@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "PoS Order Summary",
-    "version": "8.0.1.1.1",
+    "version": "8.0.1.2.3",
     "category": "Point of Sale",
     "website": "https://opensynergy-indonesia.com",
     "author": "OpenSynergy Indonesia",

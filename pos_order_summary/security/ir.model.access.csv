@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pos_order_summary_view_action_all,PoS Order Summary - All User,model_pos_order_summary,,1,0,0,0
+access_pos_order_summary_by_product_view_action_all,PoS Order Summary By Product- All User,model_pos_order_summary_by_product,,1,0,0,0
+access_pos_order_summary_by_transaction_view_action_all,PoS Order Summary By Transaction- All User,model_pos_order_summary_by_transaction,,1,0,0,0
