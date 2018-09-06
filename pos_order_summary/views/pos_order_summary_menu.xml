@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+		<menuitem
+			id="pos_order_summary_menu_root"
+			name="Summary"
+			parent="point_of_sale.menu_point_root"
+			sequence="10"
+		/>
+
+        <menuitem
+            id="pos_order_summary_by_product_menu"
+            name="By Product"
+            parent="pos_order_summary_menu_root"
+            action="pos_order_summary_by_product_view_action"
+            sequence="1"/>
+
+        <menuitem
+            id="pos_order_summary_by_transaction_menu"
+            name="By Transaction"
+            parent="pos_order_summary_menu_root"
+            action="pos_order_summary_by_transaction_view_action"
+            sequence="1"/>
+
+    </data>
+</openerp>

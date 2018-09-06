@@ -14,6 +14,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/pos_order_summary.xml"
+        "views/pos_order_summary_by_product.xml",
+        "views/pos_order_summary_by_transaction.xml",
+        "views/pos_order_summary_menu.xml"
     ],
 }

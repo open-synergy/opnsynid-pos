@@ -4,9 +4,9 @@
 
 <openerp>
     <data>
-        <record id="pos_order_summary_view_tree" model="ir.ui.view">
-            <field name="name">pos.order_summary Tree</field>
-            <field name="model">pos.order_summary</field>
+        <record id="pos_order_summary_by_product_view_tree" model="ir.ui.view">
+            <field name="name">pos.order_summary_by_product Tree</field>
+            <field name="model">pos.order_summary_by_product</field>
             <field name="arch" type="xml">
                 <tree create="false" edit="false" delete="false">
                     <field name="date_order"/>
@@ -20,9 +20,9 @@
             </field>
         </record>
 
-        <record id="pos_order_summary_view_search" model="ir.ui.view">
-            <field name="name">pos.order_summary Search</field>
-            <field name="model">pos.order_summary</field>
+        <record id="pos_order_summary_by_product_view_search" model="ir.ui.view">
+            <field name="name">pos.order_summary_by_product Search</field>
+            <field name="model">pos.order_summary_by_product</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="date_order"/>
@@ -32,28 +32,28 @@
                         <filter name="grp_date_order" string="Date Order" context="{'group_by':'date_order:day'}"/>
                         <filter name="grp_product_id" string="Product" context="{'group_by':'product_id'}"/>
                         <filter name="grp_warehouse_id" string="Warehouse" context="{'group_by':'warehouse_id'}"/>
+                        <filter name="grp_current_date" string="Current Date" domain="[('date_order', '=', datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
                     </group>
                 </search>
             </field>
         </record>
 
-        <record id="pos_order_summary_view_action" model="ir.actions.act_window">
-            <field name="name">PoS Order Summary</field>
+        <record id="pos_order_summary_by_product_view_action" model="ir.actions.act_window">
+            <field name="name">By Product</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">pos.order_summary</field>
+            <field name="res_model">pos.order_summary_by_product</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="pos_order_summary_view_tree"/>
-            <field name="search_view_id" ref="pos_order_summary_view_search"/>
+            <field name="view_id" ref="pos_order_summary_by_product_view_tree"/>
+            <field name="search_view_id" ref="pos_order_summary_by_product_view_search"/>
             <field name="target">current</field>
-            <field name="context">{'search_default_grp_date_order':1, 'search_default_grp_warehouse_id':1}</field>
+            <field name="context">
+                {
+                    'search_default_grp_date_order':1,
+                    'search_default_grp_warehouse_id':1,
+                    'search_default_grp_current_date':1,
+                }
+            </field>
         </record>
-
-        <menuitem
-            id="pos_order_summary_view_menu"
-            parent="point_of_sale.menu_point_of_sale"
-            action="pos_order_summary_view_action"
-            sequence="999"/>
-
     </data>
 </openerp>

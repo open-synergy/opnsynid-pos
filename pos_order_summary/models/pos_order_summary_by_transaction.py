@@ -7,12 +7,15 @@ from openerp import tools
 import openerp.addons.decimal_precision as dp
 
 
-class PosOrderSummary(models.AbstractModel):
-    _name = "pos.order_summary"
+class PosOrderSummaryByTransaction(models.AbstractModel):
+    _name = "pos.order_summary_by_transaction"
     _auto = False
 
     date_order = fields.Date(
         string="Order Date"
+    )
+    name = fields.Char(
+        string="Order Ref."
     )
     product_id = fields.Many2one(
         string="Product",
@@ -26,16 +29,16 @@ class PosOrderSummary(models.AbstractModel):
         string="Unit Price",
         digits_compute=dp.get_precision('Product Price')
     )
-    total_discount = fields.Float(
-        string="Total Discount",
+    discount = fields.Float(
+        string="Discount",
         digits_compute=dp.get_precision('Account')
     )
-    total_qty = fields.Float(
-        string="Total Qty",
+    qty = fields.Float(
+        string="Qty",
         digits_compute=dp.get_precision('Product UoS')
     )
-    total_price = fields.Float(
-        string="Total Price",
+    price_subtotal = fields.Float(
+        string="Subtotal",
         digits_compute=dp.get_precision('Product Price')
     )
 
@@ -47,12 +50,13 @@ class PosOrderSummary(models.AbstractModel):
                     B.date_order at time zone 'utc'
                     at time zone 'Asia/Jakarta'
                 )::date AS date_order,
+                B.name AS name,
                 A.product_id AS product_id,
-                E.warehouse_id,
+                E.warehouse_id AS warehouse_id,
                 A.price_unit AS price_unit,
-                SUM((A.price_unit *(A.discount/100))) AS total_discount,
-                SUM(A.qty) AS total_qty,
-                SUM(A.price_subtotal) AS total_price
+                (A.price_unit *(A.discount/100)) AS discount,
+                A.qty AS qty,
+                A.price_subtotal AS price_subtotal
         """
         return select_str
 
@@ -64,20 +68,12 @@ class PosOrderSummary(models.AbstractModel):
 
     def _join(self):
         join_str = """
-        JOIN pos_order B ON A.order_id=B.id
-        JOIN pos_session C ON B.session_id=C.id
-        JOIN pos_config D ON C.config_id=D.id
-        JOIN stock_picking_type E ON D.picking_type_id=E.id
+            JOIN pos_order B ON A.order_id=B.id
+            JOIN pos_session C ON B.session_id=C.id
+            JOIN pos_config D ON C.config_id=D.id
+            JOIN stock_picking_type E ON D.picking_type_id=E.id
         """
         return join_str
-
-    def _group_by(self):
-        group_by_str = """
-            GROUP BY (
-                B.date_order at time zone 'utc'at time zone 'Asia/Jakarta'
-            )::date,A.product_id,E.warehouse_id,A.price_unit
-        """
-        return group_by_str
 
     def init(self, cr):
         tools.drop_view_if_exists(cr, self._table)
@@ -85,10 +81,8 @@ class PosOrderSummary(models.AbstractModel):
             %s
             %s
             %s
-            %s
             )""" % (
             self._table,
             self._select(),
             self._from(),
-            self._join(),
-            self._group_by()))
+            self._join()))
