@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template
+            id="assets_backend"
+            name="pos_restrict_price_change assets"
+            inherit_id="web.assets_backend"
+            >
+            <xpath expr="." position="inside">
+                <script
+                    type="text/javascript"
+                    src="/pos_restrict_price_change/static/src/js/main.js"
+                    >
+                </script>
+                <script
+                    type="text/javascript"
+                    src="/pos_restrict_price_change/static/src/js/widget.js"
+                    >
+                </script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
