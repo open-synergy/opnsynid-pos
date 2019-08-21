@@ -8,7 +8,7 @@ function pos_restaurant_table_management_widget(instance, module){
         // S-1.1
         // Nama Fungsi untuk mendaftakan widget baru yang dibuat
         build_widgets: function() {
-                
+
             var self = this;
             this._super();
 
@@ -32,10 +32,10 @@ function pos_restaurant_table_management_widget(instance, module){
     // Module yang mengatur Client Screen di POS
     module.ClientListScreenWidget.include({
         // S-2.1 Proses menambahkan tombol baru pada Client Screen
-        // Tombol baru sudah ditambahkan pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Tombol baru sudah ditambahkan pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-1
         show: function(){
-            var self = this;        
+            var self = this;
             this._super();
             var floor_list = self.pos.get('floor_list');
 
@@ -51,23 +51,35 @@ function pos_restaurant_table_management_widget(instance, module){
                         // Pop up ini sudah didaftarkan pada module default point_of_sale
                         self.pos_widget.screen_selector.set_current_screen('clientlist');
                     });
-                });                
+                });
             }
             else{
                 this.$el.removeClass('.select-table');
             }
         }
-    });  
-    
+    });
+
+    module.PaymentScreenWidget.include({
+        validate_order: function(options) {
+            var currentOrder = this.pos.get('selectedOrder');
+            var table_id = currentOrder.get('table')
+            var uid = currentOrder["uid"]
+            if(table_id){
+                this.pos.db.remove_seat_table(table_id["id"], uid);
+            }
+            this._super(options);
+        },
+    });
+
     // S-3
     // Module yang mengatur widget PopUp
     // Module ini didaftarkan pada S.1-2
     module.FloorPopUp = module.PopUpWidget.extend({
         // Mendefinisikan template Pop Up yang dibuat
-        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-2
         template:'FloorPopupWidget',
-            
+
         // Fungsi Start ini akan dijalankan pertama kali setelah initiasi awal ketika module ini dipanggil
         start: function(){
             this._super();
@@ -80,19 +92,19 @@ function pos_restaurant_table_management_widget(instance, module){
         // Fungsi Show ini akan dijalankan ketika Pop Up muncul ke screen
         show: function(){
             this._super();
-            var self = this; 
+            var self = this;
             // Proses mengganti DOM pada template dengan Screen Widget yang sudah didefiniskan pada S.3.-1
-            // Struktur DOM bisa dilihat pada /src/xml/pos_table_management.xml 
+            // Struktur DOM bisa dilihat pada /src/xml/pos_table_management.xml
             // Lihat T-2
-            this.floor_list_widget.replace($('.placeholder-FloorListScreenWidget'));       
+            this.floor_list_widget.replace($('.placeholder-FloorListScreenWidget'));
         },
-    }); 
+    });
 
     // S-4
     // Module yang mengatur widget Screen
     module.FloorListScreenWidget = module.ScreenWidget.extend({
         // Mendefinisikan template Screen yang dibuat
-        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-3
         template:'FloorListScreenWidget',
 
@@ -115,7 +127,7 @@ function pos_restaurant_table_management_widget(instance, module){
             // Mendefiniskan List Floor yang ada ke dalam Variabel
             // floor_list sudah didaftarkan pada /src/js/models.js
             // Lihat M-1
-            var floors = this.pos.get('floor_list') || []; 
+            var floors = this.pos.get('floor_list') || [];
             // Proses Memasukan data pada template
             // Melakukan looping terhadap data floor yang ada
             for(var i = 0; i < floors.length;  i++ ){
@@ -131,13 +143,13 @@ function pos_restaurant_table_management_widget(instance, module){
             }
         },
     }),
-        
+
     // S-5
     // Module yang mengatur Widget di POS
     // Proses membuat widget baru untuk menampilkan list floor
     module.FloorListWidget = module.PosBaseWidget.extend({
         // Mendefinisikan Template
-        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-4
         template: 'FloorListWidget',
 
@@ -151,7 +163,8 @@ function pos_restaurant_table_management_widget(instance, module){
         renderElement: function(){
             var self = this;
             this._super();
-
+            var currentOrder = self.pos.get('selectedOrder');
+            var uid = currentOrder["uid"]
             // Membuat fungsi untuk setiap tombol floor apabila di-klik
             $("button", this.$el).click(function(e){
                 // S-5.1
@@ -161,8 +174,7 @@ function pos_restaurant_table_management_widget(instance, module){
                 // Lihat S-6.1
                 // Fungsi get_table_by_floor ada pada /src/js/db.js
                 // Lihat DB-1.3
-                self.pos_widget.table_popup.set_table_list(self.pos.db.get_table_by_floor(self.model_floor.id));
-                console.log(self.model_floor)
+                self.pos_widget.table_popup.set_table_list(self.pos.db.get_table_by_floor(self.model_floor.id, uid));
                 // Menampilkan widget Pop Up yang sudah didefinisikan di awal pada S.1-3
                 self.pos_widget.screen_selector.show_popup("tables");
             });
@@ -174,7 +186,7 @@ function pos_restaurant_table_management_widget(instance, module){
     // Module ini didaftarkan pada S.1-3
     module.TablePopUp = module.PopUpWidget.extend({
         // Mendefinisikan template Pop Up yang dibuat
-        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-5
         template: "TablePopupWidget",
 
@@ -198,7 +210,7 @@ function pos_restaurant_table_management_widget(instance, module){
             this._super();
             // Mendefiniskan List Table yang ada ke dalam Variabel
             // this.table_list sudah diset pada S-6.1
-            var tables = this.table_list || []; 
+            var tables = this.table_list || [];
             // Proses Memasukan data pada template
             // Mendefinisikan Widget Table List
             // Melakukan parsing parameter model_table
@@ -210,14 +222,14 @@ function pos_restaurant_table_management_widget(instance, module){
             // '.table_data' ada pada T-5
             table.appendTo(this.$('.table-data'));
         },
-    }); 
+    });
 
     // S-7
     // Module yang mengatur Widget di POS
     // Proses membuat widget baru untuk menampilkan list table
     module.TableListWidget = module.PosBaseWidget.extend({
         // Mendefinisikan Template
-        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml 
+        // Template dibuat pada xml Client Screen /src/xml/pos_table_management.xml
         // Lihat T-6
         template: 'TableListWidget',
 
@@ -231,7 +243,8 @@ function pos_restaurant_table_management_widget(instance, module){
         renderElement: function(){
             this._super();
             var self = this;
-
+            var currentOrder = self.pos.get('selectedOrder');
+            var uid = currentOrder["uid"]
             // Membuat fungsi pada saat data tabel di-klik
             $("#table-ok", this.$el).click(function(e){
                 // S-7.1
@@ -241,19 +254,40 @@ function pos_restaurant_table_management_widget(instance, module){
                 // Lihat M-3.1
                 var guest = $('.table-guest').val();
                 var table_id = parseInt($('select[name=select_table]').val())
+                var total_guest = self.pos.db.get_total_seat_table_another_order(table_id, uid);
+                var check = true
 
                 if (parseInt(guest) > 0){
-                    self.pos.get('selectedOrder').set_guest(guest);
+                    currentOrder.set_guest(guest);
+                }else{
+                    currentOrder.set_guest("0");
                 }
 
                 for (var i=0, len = self.model_table.length; i < len; i++){
                     if (self.model_table[i].id == table_id){
-                        self.pos.get('selectedOrder').set_table(self.model_table[i]);
+                        var capacity = self.model_table[i].capacity
+                        var remaining = 0
+                        if (total_guest == 0){
+                            remaining = capacity
+                        }else{
+                            remaining = capacity - total_guest
+                        }
+                        if (remaining < guest){
+                          alert("Number of guest exceeds maximum capacity")
+                          check = false
+                          break;
+                        }
+                        currentOrder.set_table(self.model_table[i]);
                         break;
                     }
                 }
-                // Fungsi ini untuk mengembalikan screen ke awal
-                self.pos_widget.screen_selector.back();
+
+                if (table_id && check == true){
+                    var guest_order = currentOrder.get('guest')
+                    self.pos.db.update_seat_table(uid, table_id, guest_order);
+                    // Fungsi ini untuk mengembalikan screen ke awal
+                    self.pos_widget.screen_selector.set_current_screen('clientlist');
+                }
             });
             $("#table-back", this.$el).click(function(e){
                 // Menampilkan widget Pop Up Floors
@@ -268,5 +302,5 @@ function pos_restaurant_table_management_widget(instance, module){
             this.pos.get('selectedOrder').set_table(this.new_client);
         },
     });
-    
+
 };
