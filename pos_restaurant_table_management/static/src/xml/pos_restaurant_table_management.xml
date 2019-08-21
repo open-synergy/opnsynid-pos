@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <!--    
+    <!--
         T-1
         Inherit Template Client Screen
         Menambahkan Tombol "Select Table"
@@ -14,7 +14,7 @@
         </t>
     </t>
 
-    <!--    
+    <!--
         T-2
         Membuat Template Pop Up Widget Untuk Floor
     -->
@@ -31,12 +31,12 @@
                 </div>
                 <div class="floor-data" >
                     <span class="placeholder-FloorListScreenWidget" />
-                </div> 
+                </div>
             </div>
         </div>
     </t>
 
-    <!--    
+    <!--
         T-3
         Membuat Template Screen Widget Untuk Floor
     -->
@@ -47,7 +47,7 @@
         </div>
     </t>
 
-    <!--    
+    <!--
         T-4
         Membuat Template List Widget Untuk Floor
     -->
@@ -57,9 +57,9 @@
                 <t t-esc="widget.model_floor.floor_name"/>
             </button>
         </span>
-    </t>  
+    </t>
 
-    <!--    
+    <!--
         T-5
         Membuat Template Pop Up Widget Untuk Table
     -->
@@ -71,13 +71,13 @@
                     Tables List
                 </div>
                 <div class="table-data" >
-                </div> 
+                </div>
             </div>
         </div>
 
-    </t>     
+    </t>
 
-    <!--    
+    <!--
         T-6
         Membuat Template List Widget Untuk Table
     -->
@@ -93,20 +93,20 @@
                 Back
             </span>
             <select class='selected_table' name='select_table'>
-                <option value=''>--Select Table--</option>
+                <option value=''>--Select--</option>
                 <t t-foreach='widget.model_table' t-as='table'>
-                    <option t-att-value='table.id'> 
-                        <t t-esc='table.table_name'/>
+                    <option t-att-value='table.id'>
+                        <t t-esc='table.full_table_name'/>
                     </option>
                 </t>
-                <input class='table-guest'
-                        name='tableguest-input'
-                        placeholder='--Number of Guest--'/>
             </select>
-        </div>  
+            <input class='table-guest'
+                    name='tableguest-input'
+                    placeholder='--Number of Guest--'/>
+        </div>
     </t>
 
-    <!--    
+    <!--
         T-7
         Menambahkan Informasi Table pada tab order
     -->

@@ -73,12 +73,11 @@ function pos_restaurant_table_management_models(instance, module){
         // Inherit Fungsi export_as_JSON
         // Fungsi ini digunakan untuk mengeksport data yang akan dimasukan ke object pos.order
         export_as_JSON: function(){
-            var json = _super.prototype.export_as_JSON.apply(this,arguments);   
-            // Menambahkan variabel tabel        
+            var json = _super.prototype.export_as_JSON.apply(this,arguments);
+            // Menambahkan variabel tabel
             json.table = this.get_table();
             json.guest = this.get_guest();
             return json;
         },
     })
 };
-
