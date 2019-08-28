@@ -8,6 +8,8 @@ cache:
 python:
   - "2.7"
 
+distro: trusty
+
 addons:
   apt:
 # only add the two lines below if you need wkhtmltopdf for your tests
