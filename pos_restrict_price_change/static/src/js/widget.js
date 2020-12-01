@@ -3,7 +3,7 @@ function pos_restrict_price_change_widgets(instance, module){
     module.OrderWidget.include({
         check_allowed_user_change_price: function() {
             var restrict_price_change = this.pos.config.restrict_price_change;
-            var current_user = this.pos.cashier;
+            var current_user = this.pos.user.id;
             var result = false;
             if (restrict_price_change){
                 var all_user_change_price_ids = this.pos.config.all_user_change_price_ids
@@ -25,7 +25,7 @@ function pos_restrict_price_change_widgets(instance, module){
             if (mode == 'price'){
                 var result = self.check_allowed_user_change_price();
                 if (result == false){
-                    alert(_t("You are not authorized to change the price"));
+                    alert("You are not authorized to change the price");
                 }
                 else{
                     this._super(val);
